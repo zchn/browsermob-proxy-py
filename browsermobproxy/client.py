@@ -70,9 +70,9 @@ class Client(object):
          - ref: A reference for the HAR. Defaults to None
         """
         if ref:
-            payload = {"initialPageRef": ref}
+            payload = {"initialPageRef": ref, "captureContent": True}
         else:
-            payload = {}
+            payload = {"captureContent": True}
         r = requests.put('%s/proxy/%s/har' % (self.host, self.port), payload)
         if r.status_code == 200:
             return (r.status_code, r.json())
